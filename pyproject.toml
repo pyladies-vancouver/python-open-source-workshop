@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "firstpr"
+version = "0.1.0"
+description = "A tiny practice library for the Python Open Source Workshop."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+keywords = ["workshop", "open-source", "teaching", "contributing"]
+authors = [{ name = "Workshop Participants" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff>=0.4", "build>=1.0"]
+docs = ["sphinx>=7.0", "myst-parser>=2.0"]
+
+[project.urls]
+Homepage = "https://github.com/YOUR-ORG/python-open-source-workshop"
+Issues = "https://github.com/YOUR-ORG/python-open-source-workshop/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/firstpr"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--doctest-modules"
+
+[tool.ruff]
+line-length = 88
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

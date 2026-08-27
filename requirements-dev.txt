@@ -1,0 +1,9 @@
+# Install everything you need for the workshop with:
+#   python -m pip install -e ".[dev,docs]"
+# This file mirrors the [dev] + [docs] extras in pyproject.toml for convenience.
+pytest>=7.0
+ruff>=0.4
+build>=1.0
+sphinx>=7.0
+myst-parser>=2.0
+pre-commit>=3.0
