@@ -24,7 +24,7 @@ Key ideas:
 ## 2. `pyproject.toml`, the modern standard (15 min)
 
 One file now describes how to build a project and its metadata. Open this repo's
-[`../../pyproject.toml`](../../pyproject.toml) and read along:
+[`pyproject.toml`](https://github.com/pyladies-vancouver/python-open-source-workshop/blob/main/pyproject.toml) and read along:
 
 ```toml
 [build-system]

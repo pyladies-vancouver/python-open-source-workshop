@@ -31,12 +31,12 @@ assumed.
 
 | # | Session | You'll practice |
 |---|---------|-----------------|
-| 1 | [Getting started in open source](sessions/01-getting-started/) | Setup, community norms, your first PR |
-| 2 | [Finding projects & reading a repo](sessions/02-finding-projects/) | Issue triage, "good first issue", repo anatomy |
-| 3 | [Git & GitHub for contributors](sessions/03-git-and-github/) | The full fork → PR cycle, merge conflicts |
-| 4 | [Documentation contributions](sessions/04-documentation/) | Docstrings, Sphinx, building docs, doctests |
-| 5 | [Packaging](sessions/05-packaging/) | `pyproject.toml`, wheels, TestPyPI |
-| 6 | [CI/CD](sessions/06-ci-cd/) | GitHub Actions, linting, reading failures |
+| 1 | [Getting started in open source](sessions/01-getting-started/README.md) | Setup, community norms, your first PR |
+| 2 | [Finding projects & reading a repo](sessions/02-finding-projects/README.md) | Issue triage, "good first issue", repo anatomy |
+| 3 | [Git & GitHub for contributors](sessions/03-git-and-github/README.md) | The full fork → PR cycle, merge conflicts |
+| 4 | [Documentation contributions](sessions/04-documentation/README.md) | Docstrings, Sphinx, building docs, doctests |
+| 5 | [Packaging](sessions/05-packaging/README.md) | `pyproject.toml`, wheels, TestPyPI |
+| 6 | [CI/CD](sessions/06-ci-cd/README.md) | GitHub Actions, linting, reading failures |
 
 Each session folder has a `README.md` (the teaching material) and an
 `exercises.md` (what you'll do with your hands).
@@ -78,13 +78,51 @@ python-open-source-workshop/
 ├── pyproject.toml            <- packaging + tool config (Session 5)
 ├── .pre-commit-config.yaml   <- local checks (Session 6)
 ├── .github/workflows/ci.yml  <- continuous integration (Session 6)
+├── .github/workflows/docs.yml<- builds & deploys the handbook site to Pages
+├── mkdocs.yml                <- config for the published handbook site
+├── scripts/build_site.py     <- assembles + builds the MkDocs site
 ├── src/firstpr/              <- the practice package
 ├── tests/                    <- its test suite
 ├── docs/                     <- Sphinx documentation (Session 4)
 └── sessions/                 <- the curriculum, one folder per session
 ```
 
+## Published handbook (MkDocs + GitHub Pages)
+
+The whole curriculum is also published as a searchable website using
+[MkDocs](https://www.mkdocs.org/) with the Material theme. The site reads the
+same Markdown files you see in the repo — nothing is duplicated — so the repo
+and the site never drift apart.
+
+Preview or build it locally:
+
+```bash
+python -m pip install mkdocs-material
+python scripts/build_site.py serve     # live preview at http://127.0.0.1:8000
+python scripts/build_site.py build     # one-off build into ./site
+```
+
+The helper script copies the curriculum into a generated `site-src/` folder
+(git-ignored) and then runs MkDocs; this lets `README.md` and friends stay at
+the repo root where GitHub expects them while still giving MkDocs a single
+source directory.
+
+**Deploying to GitHub Pages** happens automatically: the
+[`docs.yml`](https://github.com/pyladies-vancouver/python-open-source-workshop/blob/main/.github/workflows/docs.yml) workflow builds and publishes the site
+to a `gh-pages` branch on every push to `main`. One-time setup after you push:
+
+1. Edit `mkdocs.yml` and replace `YOUR-ORG` in `site_url` and `repo_url` with
+   your GitHub org/username (also update the clone URLs in this README).
+2. Push to `main` so the workflow runs once (or trigger it from the **Actions**
+   tab).
+3. In **Settings → Pages**, set the source to **Deploy from a branch →
+   `gh-pages` / (root)**.
+
+Your handbook then lives at
+`https://YOUR-ORG.github.io/python-open-source-workshop/`. You can also deploy
+by hand anytime with `python scripts/build_site.py gh-deploy`.
+
 ## License
 
-Curriculum and code are released under the [MIT License](LICENSE) so you can
+Curriculum and code are released under the [MIT License](https://github.com/pyladies-vancouver/python-open-source-workshop/blob/main/LICENSE) so you can
 reuse, remix, and re-teach this workshop freely.

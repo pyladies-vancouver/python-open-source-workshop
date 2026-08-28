@@ -28,7 +28,7 @@ Why contributors care:
 
 ## 2. Reading this repo's pipeline (15 min)
 
-Open [`../../.github/workflows/ci.yml`](../../.github/workflows/ci.yml) and read
+Open [`.github/workflows/ci.yml`](https://github.com/pyladies-vancouver/python-open-source-workshop/blob/main/.github/workflows/ci.yml) and read
 along. GitHub Actions workflows are YAML files in `.github/workflows/`.
 
 ```yaml
@@ -91,7 +91,7 @@ same output you'd see locally.
 ## 4. pre-commit: catch it even earlier (5 min)
 
 CI is the last line of defence; **pre-commit** is the first. This repo ships a
-[`.pre-commit-config.yaml`](../../.pre-commit-config.yaml) that runs ruff and a
+[`.pre-commit-config.yaml`](https://github.com/pyladies-vancouver/python-open-source-workshop/blob/main/.pre-commit-config.yaml) that runs ruff and a
 few hygiene checks *before each commit is created*:
 
 ```bash
