@@ -32,6 +32,9 @@ docs_dir: site-src
 
 theme:
   name: material
+  font:
+    text: Inter
+    code: Roboto Mono
   icon:
     repo: fontawesome/brands/github
   features:
@@ -46,18 +49,23 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
+
+# Brand colours live in CSS because Material's `palette` only accepts its own
+# named colours; the palette above is therefore set to `custom`.
+extra_css:
+  - site-assets/pyladies.css
 
 plugins:
   - search

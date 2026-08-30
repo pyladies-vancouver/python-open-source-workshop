@@ -1,0 +1,100 @@
+/* PyLadies Vancouver brand palette for Material for MkDocs.
+ *
+ * Values come from the brand tokens in vancouver.pyladies.com's hugo.toml
+ * ([params.brand]), so the handbook matches the main site. Material only
+ * accepts its own named colours in mkdocs.yml, so the palette there is set
+ * to `custom` and the real values live here.
+ *
+ * Contrast was checked against WCAG AA. Where the brand pink is too light
+ * to carry body text, the darker brand red is used for text instead, and
+ * the pink is kept for large chrome. Nothing below is a new colour: every
+ * value is either a brand token or a tint of one.
+ */
+
+/* Material loads only the one family named in mkdocs.yml's `font.text`
+ * (Inter, the brand's fontSans). The display face has to be requested here
+ * or the heading rule at the bottom silently falls back to Inter. */
+@import url("https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap");
+
+:root {
+  /* Brand tokens, verbatim from the site. */
+  --plv-pink: #fa023c;          /* primary */
+  --plv-pink-hover: #d4023a;    /* primaryHover */
+  --plv-red: #c8102e;           /* primaryActive / secondary */
+  --plv-indigo: #2e2f93;        /* accent */
+  --plv-ink: #142a36;           /* ink */
+  --plv-wash: #fad3e2;          /* surfaceWash */
+  --plv-wash-soft: #fff5f9;     /* surfaceWashSoft */
+
+  /* Lightened for dark mode, where the brand values are too dark to read
+   * against a near-black background. */
+  --plv-pink-light: #ff8fa3;
+  --plv-indigo-light: #a5a6f6;
+}
+
+/* ---------- Light scheme ---------- */
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: var(--plv-pink);
+  --md-primary-fg-color--light: var(--plv-wash);
+  --md-primary-fg-color--dark: var(--plv-red);
+  --md-primary-bg-color: #fff;
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
+
+  --md-accent-fg-color: var(--plv-indigo);
+  --md-accent-fg-color--transparent: rgba(46, 47, 147, 0.1);
+
+  /* Body links use the darker brand red: #fa023c on white is 4.09:1, which
+   * passes AA for large text only. #c8102e is 5.88:1 and passes for body. */
+  --md-typeset-a-color: var(--plv-red);
+
+  --md-footer-bg-color: var(--plv-ink);
+  --md-footer-bg-color--dark: #0d1c25;
+}
+
+/* Section headers pick up the soft wash, as on the main site. */
+[data-md-color-scheme="default"] .md-typeset h2 {
+  border-bottom: 2px solid var(--plv-wash);
+  padding-bottom: 0.2em;
+}
+
+[data-md-color-scheme="default"] .md-typeset blockquote {
+  background: var(--plv-wash-soft);
+  border-left-color: var(--plv-pink);
+}
+
+/* ---------- Dark scheme ---------- */
+
+[data-md-color-scheme="slate"] {
+  /* The header keeps the brand pink: white on #fa023c is 4.09:1, which is
+   * fine for the large title and icons it carries. */
+  --md-primary-fg-color: var(--plv-pink);
+  --md-primary-fg-color--light: var(--plv-pink-light);
+  --md-primary-fg-color--dark: var(--plv-red);
+  --md-primary-bg-color: #fff;
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
+
+  /* Body text is a different matter: on the slate background the brand pink
+   * is 3.19:1 and the brand indigo 1.21:1, both unreadable. These tints are
+   * 6.0:1 and 5.8:1. */
+  --md-accent-fg-color: var(--plv-indigo-light);
+  --md-accent-fg-color--transparent: rgba(165, 166, 246, 0.1);
+  --md-typeset-a-color: var(--plv-pink-light);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h2 {
+  border-bottom: 2px solid rgba(250, 2, 60, 0.4);
+  padding-bottom: 0.2em;
+}
+
+/* ---------- Typography ---------- */
+
+/* fontDisplay from the brand tokens. Material applies one family to
+ * everything, so headings are re-pointed here. */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-header__topic {
+  font-family: Quantico, Inter, system-ui, sans-serif;
+  letter-spacing: 0.01em;
+}

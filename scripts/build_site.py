@@ -34,6 +34,9 @@ INCLUDE = [
     "CONTRIBUTING.md",
     "CODE_OF_CONDUCT.md",
     "sessions",
+    # Not curriculum: the brand stylesheet mkdocs.yml pulls in via extra_css,
+    # which resolves relative to docs_dir (i.e. inside site-src/).
+    "site-assets",
 ]
 
 
