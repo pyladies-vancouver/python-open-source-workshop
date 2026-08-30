@@ -1,0 +1,45 @@
+name: Docs
+
+# When does this run? On every push to main, and on demand from the Actions
+# tab. Deliberately NOT on pull requests: a PR must not be able to publish.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# The default token is read-only in many repos. `mkdocs gh-deploy` pushes a
+# commit to the gh-pages branch, so this job needs write access to contents.
+# Nothing else, which is why it is spelled out rather than left to defaults.
+permissions:
+  contents: write
+
+# Two pushes to main in quick succession would otherwise race to force-push
+# gh-pages. Queue them instead of cancelling: every commit gets published.
+concurrency:
+  group: docs-deploy
+  cancel-in-progress: false
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the site dependencies
+        run: python -m pip install -e ".[site]"
+
+      # gh-deploy writes a real commit, so git needs an author to attribute
+      # it to. This is the standard identity for GitHub Actions itself.
+      - name: Set the commit identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # build_site.py syncs site-src/ first, then passes gh-deploy through to
+      # mkdocs, which builds and force-pushes the result to gh-pages.
+      - name: Build and publish to gh-pages
+        run: python scripts/build_site.py gh-deploy --force
