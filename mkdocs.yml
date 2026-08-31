@@ -20,7 +20,12 @@
 
 site_name: Python Open Source Workshop
 site_description: A hands-on, ~6-hour workshop on contributing to open source in Python.
-site_author: Python Open Source Workshop contributors
+site_author: PyLadies Vancouver
+# Shown in the footer of every page, so the attribution travels with the site.
+copyright: >-
+  Copyright &copy; 2026 PyLadies Vancouver &middot;
+  curriculum <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>,
+  code <a href="https://github.com/pyladies-vancouver/python-open-source-workshop/blob/main/LICENSE">MIT</a>
 
 # Update these to your GitHub org/user once the repo is pushed.
 site_url: https://pyladies-vancouver.github.io/python-open-source-workshop/

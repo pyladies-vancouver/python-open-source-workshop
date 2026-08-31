@@ -124,5 +124,29 @@ by hand anytime with `python scripts/build_site.py gh-deploy`.
 
 ## License
 
-Curriculum and code are released under the [MIT License](https://github.com/pyladies-vancouver/python-open-source-workshop/blob/main/LICENSE) so you can
-reuse, remix, and re-teach this workshop freely.
+Two licenses, because this repository holds two different kinds of thing.
+
+| What | License | |
+| --- | --- | --- |
+| The curriculum: `sessions/`, `SCHEDULE.md`, this README, `docs/` | **CC BY-SA 4.0** | [LICENSE-CONTENT](https://github.com/pyladies-vancouver/python-open-source-workshop/blob/main/LICENSE-CONTENT) |
+| The code: `src/firstpr/`, `tests/`, `scripts/` | **MIT** | [LICENSE](https://github.com/pyladies-vancouver/python-open-source-workshop/blob/main/LICENSE) |
+
+Copyright (c) 2026 PyLadies Vancouver.
+
+**You may re-teach this workshop**, including commercially, and adapt it to
+your own group. Two conditions come with the curriculum:
+
+1. **Credit PyLadies Vancouver** and link back to this repository.
+2. **Share adaptations under CC BY-SA 4.0 too**, so the next person to pick it
+   up has the same freedom you did.
+
+A credit line you can copy:
+
+> "[PyLadies Vancouver Python Open Source Workshop](https://github.com/pyladies-vancouver/python-open-source-workshop)"
+> by PyLadies Vancouver, licensed under
+> [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+> Changes were made.
+
+Drop the last line if you are using the material unmodified. If you are only
+reusing the `firstpr` package or the build scripts, MIT applies and retaining
+the copyright notice is all that is asked.

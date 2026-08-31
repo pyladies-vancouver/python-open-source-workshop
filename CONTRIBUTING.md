@@ -49,6 +49,13 @@ Look for issues labelled **`good first issue`** and **`documentation`**.
 Short imperative summary line (≤ 50 chars), e.g. `Add test for empty word_count`.
 Add a body if the *why* isn't obvious from the summary.
 
+## Licensing your contribution
+
+This repository is dual licensed: the curriculum under CC BY-SA 4.0 and the
+code under MIT (see [README](README.md#license)). By opening a pull request you
+agree to license your contribution under whichever of the two covers the files
+you touched. You keep the copyright on what you wrote.
+
 ## Code of conduct
 
 By participating you agree to uphold our [Code of Conduct](CODE_OF_CONDUCT.md).
