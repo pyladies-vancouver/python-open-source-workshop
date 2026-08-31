@@ -38,6 +38,7 @@ env/
 # Docs build
 docs/_build/
 site/
+site-src/
 
 # Tooling caches
 .pytest_cache/

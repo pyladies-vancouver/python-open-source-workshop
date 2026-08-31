@@ -1,0 +1,121 @@
+# MkDocs configuration for the Python Open Source Workshop handbook.
+#
+# Publishes the curriculum (README, schedule, all six sessions, and the
+# contributing/conduct guides) as a static site for GitHub Pages.
+#
+# WHY THE `site-src` FOLDER? GitHub wants files like README.md and
+# CONTRIBUTING.md at the repository root (so it renders them in its own UI),
+# while MkDocs wants all site pages under one `docs_dir`. To satisfy both
+# without moving or duplicating anything in git, a tiny script copies the
+# curriculum into a generated, git-ignored `site-src/` that MkDocs builds from.
+# The repo-root files stay the single source of truth.
+#
+# Build/preview locally (this runs the copy for you):
+#     pip install mkdocs-material
+#     python scripts/build_site.py serve     # live preview at 127.0.0.1:8000
+#     python scripts/build_site.py build     # one-off build into ./site
+#
+# The package's own API reference is a *separate* artifact built with Sphinx in
+# Session 4 (see docs/); it is intentionally not part of this site.
+
+site_name: Python Open Source Workshop
+site_description: A hands-on, ~6-hour workshop on contributing to open source in Python.
+site_author: Python Open Source Workshop contributors
+
+# Update these to your GitHub org/user once the repo is pushed.
+site_url: https://pyladies-vancouver.github.io/python-open-source-workshop/
+repo_url: https://github.com/pyladies-vancouver/python-open-source-workshop
+repo_name: python-open-source-workshop
+
+# MkDocs builds from this generated folder (created by scripts/build_site.py).
+docs_dir: site-src
+
+theme:
+  name: material
+  font:
+    text: Inter
+    code: Roboto Mono
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - navigation.footer
+    - toc.follow
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+# Brand colours live in CSS because Material's `palette` only accepts its own
+# named colours; the palette above is therefore set to `custom`.
+extra_css:
+  - site-assets/pyladies.css
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Home: README.md
+  - Schedule: SCHEDULE.md
+  - Sessions:
+      - Overview: sessions/README.md
+      - "1 · Getting started in open source":
+          - Material: sessions/01-getting-started/README.md
+          - Exercises: sessions/01-getting-started/exercises.md
+      - "2 · Finding projects & reading a repo":
+          - Material: sessions/02-finding-projects/README.md
+          - Exercises: sessions/02-finding-projects/exercises.md
+      - "3 · Git & GitHub for contributors":
+          - Material: sessions/03-git-and-github/README.md
+          - Exercises: sessions/03-git-and-github/exercises.md
+      - "4 · Documentation contributions":
+          - Material: sessions/04-documentation/README.md
+          - Exercises: sessions/04-documentation/exercises.md
+      - "5 · Packaging":
+          - Material: sessions/05-packaging/README.md
+          - Exercises: sessions/05-packaging/exercises.md
+      - "6 · CI/CD":
+          - Material: sessions/06-ci-cd/README.md
+          - Exercises: sessions/06-ci-cd/exercises.md
+  - Contributing: CONTRIBUTING.md
+  - Code of Conduct: CODE_OF_CONDUCT.md
+
+# A few session pages link to code files (pyproject.toml, ci.yml, ...) that are
+# not site pages. Those links work when browsing on GitHub; on the site they're
+# reported but never fail the build.
+validation:
+  absolute_links: info
+  unrecognized_links: info
+  links:
+    not_found: warn
